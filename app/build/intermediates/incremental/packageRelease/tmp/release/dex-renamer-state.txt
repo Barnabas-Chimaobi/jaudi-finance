@@ -1,0 +1,4 @@
+#Mon Jul 07 17:30:58 WAT 2025
+base.0=/Users/barnabasmatthew/Desktop/JaudiFinance/android/app/build/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
