@@ -4,6 +4,8 @@ import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.fabricEnabled
 import com.facebook.react.defaults.DefaultReactActivityDelegate
+import androidx.fragment.app.FragmentActivity
+import android.os.Bundle
 
 class MainActivity : ReactActivity() {
 
@@ -19,4 +21,12 @@ class MainActivity : ReactActivity() {
    */
   override fun createReactActivityDelegate(): ReactActivityDelegate =
       DefaultReactActivityDelegate(this, mainComponentName, fabricEnabled)
+
+  /**
+   * Override onCreate to ensure proper fragment support for biometric authentication
+   */
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    // Ensure the activity supports fragments for biometric authentication
+  }
 }

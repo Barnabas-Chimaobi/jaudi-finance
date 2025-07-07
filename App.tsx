@@ -1,28 +1,37 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useEffect } from 'react';
+import { StatusBar, View } from 'react-native';
+import AppNavigator from './src/navigation/AppNavigator';
+import { ConnectionStatusToast } from './src/components/common';
+import { useAppStore } from './src/stores/appStore';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+const App: React.FC = () => {
+  const { initializeApp } = useAppStore();
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+  useEffect(() => {
+    // Initialize app services
+    const initialize = async () => {
+      try {
+        await initializeApp();
+        console.log('App initialized successfully');
+      } catch (error) {
+        console.error('Failed to initialize app:', error);
+      }
+    };
+
+    initialize();
+  }, [initializeApp]);
 
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
+    <View style={{ flex: 1 }}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="#FFFFFF"
+        translucent={false}
+      />
+      <AppNavigator />
+      <ConnectionStatusToast />
     </View>
   );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+};
 
 export default App;
